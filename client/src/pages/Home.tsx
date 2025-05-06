@@ -55,23 +55,23 @@ export default function Home() {
       <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <!-- Profile Group (Photo, Name, Title) -->
-          <td style="width:70%; vertical-align:middle;">
+          <td style="width:60%; vertical-align:middle;">
             <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="width:40px; vertical-align:middle;">
                   <img src="${data.profileImageUrl}" alt="Profile Photo" style="display:block; width:40px; height:40px; border-radius:20px; border:1px solid #eeeeee; object-fit:cover; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
                 </td>
-                <td style="padding-left:15px; vertical-align:middle;">
-                  <div style="font-size:20px; font-weight:bold; color:#333333;">${data.name}</div>
-                  <div style="font-size:14px; color:#666666;">${data.title}</div>
+                <td style="padding-left:12px; vertical-align:middle;">
+                  <div style="font-size:16px; font-weight:bold; color:#333333;">${data.name}</div>
+                  <div style="font-size:12px; color:#666666;">${data.title}</div>
                 </td>
               </tr>
             </table>
           </td>
           
           <!-- Company Logo (with space-between) -->
-          <td style="width:30%; text-align:right; vertical-align:middle;">
-            <img src="${data.companyLogoUrl}" alt="Company Logo" style="display:block; max-width:120px; width:auto; height:auto; max-height:50px; border:none; margin-left:auto; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
+          <td style="width:40%; text-align:right; vertical-align:middle;">
+            <img src="${data.companyLogoUrl}" alt="Company Logo" style="display:block; max-width:120px; width:auto; height:40px; border:none; margin-left:auto; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
           </td>
         </tr>
       </table>
