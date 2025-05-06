@@ -17,7 +17,7 @@ export default function CleanupOptionsComponent({ options, onChange }: CleanupOp
 
   return (
     <div className="mt-4 bg-white rounded-lg shadow-sm p-4">
-      <h3 className="font-google-sans font-medium mb-3">Cleanup Options</h3>
+      <h3 className="font-google-sans font-medium mb-3">Signature Optimization</h3>
       <div className="space-y-3">
         <div className="flex items-center space-x-2">
           <Checkbox 
@@ -34,19 +34,6 @@ export default function CleanupOptionsComponent({ options, onChange }: CleanupOp
 
         <div className="flex items-center space-x-2">
           <Checkbox 
-            id="inline-css" 
-            checked={options.inlineCss}
-            onCheckedChange={(checked) => 
-              handleOptionChange('inlineCss', checked === true)
-            }
-          />
-          <Label htmlFor="inline-css" className="text-sm cursor-pointer">
-            Convert CSS to inline styles
-          </Label>
-        </div>
-
-        <div className="flex items-center space-x-2">
-          <Checkbox 
             id="remove-scripts" 
             checked={options.removeScripts}
             onCheckedChange={(checked) => 
@@ -54,7 +41,7 @@ export default function CleanupOptionsComponent({ options, onChange }: CleanupOp
             }
           />
           <Label htmlFor="remove-scripts" className="text-sm cursor-pointer">
-            Remove script tags
+            Remove script tags (recommended)
           </Label>
         </div>
 
@@ -67,7 +54,7 @@ export default function CleanupOptionsComponent({ options, onChange }: CleanupOp
             }
           />
           <Label htmlFor="fix-tables" className="text-sm cursor-pointer">
-            Fix table layouts for Gmail
+            Fix table attributes for Gmail compatibility
           </Label>
         </div>
       </div>

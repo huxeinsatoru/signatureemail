@@ -14,7 +14,7 @@ export default function PreviewPane({ html, transformedHtml, onCopy }: PreviewPa
     <div className="w-full lg:w-1/2">
       <div className="bg-white rounded-lg shadow-sm overflow-hidden">
         <div className="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-          <h3 className="font-google-sans font-medium">Gmail Preview</h3>
+          <h3 className="font-google-sans font-medium">Signature Preview</h3>
           <button 
             onClick={onCopy}
             className="bg-blue-600 text-white flex items-center text-sm px-4 py-2 rounded hover:bg-opacity-90 transition duration-150"
@@ -26,7 +26,7 @@ export default function PreviewPane({ html, transformedHtml, onCopy }: PreviewPa
         <div className="editor-container preview-pane">
           <div 
             ref={previewRef}
-            className="w-full h-full p-4 overflow-auto"
+            className="w-full h-full p-4 overflow-auto bg-white"
             dangerouslySetInnerHTML={{ __html: html ? transformedHtml : '' }}
           />
         </div>

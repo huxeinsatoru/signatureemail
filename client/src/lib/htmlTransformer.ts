@@ -1,17 +1,86 @@
 /**
- * Gmail HTML Transformer
+ * Gmail Signature Generator
  * 
- * A utility to transform HTML to be compatible with Gmail's compose environment
+ * A utility to create and format email signatures for Gmail
  */
 
-// Default example HTML for the editor
-export const DEFAULT_HTML = `<!-- Example HTML - Replace with your own content -->
-<table style="width:100%; border-collapse:collapse;">
+// Default example HTML for the signature editor
+export const DEFAULT_HTML = `<!-- Gmail Signature Template -->
+<table style="width:600px; border-collapse:collapse; font-family:Arial, sans-serif; color:#ffffff;" cellpadding="0" cellspacing="0" border="0">
+  <!-- Header with Name, Title and Logo -->
   <tr>
-    <td style="padding:20px; background-color:#f6f6f6; text-align:center;">
-      <h1 style="color:#333333; font-family:Arial,sans-serif;">Welcome to our Newsletter</h1>
-      <p style="color:#666666; font-family:Arial,sans-serif;">This is an example of HTML that could be used in Gmail.</p>
-      <a href="https://example.com" style="display:inline-block; padding:10px 20px; background-color:#4285f4; color:white; text-decoration:none; border-radius:4px; font-family:Arial,sans-serif;">Learn More</a>
+    <td style="background-color:#000000; padding:20px;">
+      <!-- Profile Photo and Name Section -->
+      <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="width:80px; vertical-align:middle;">
+            <img src="https://i.imgur.com/JSKQCrM.png" alt="Profile Photo" style="width:80px; height:80px; border-radius:40px; border:none;">
+          </td>
+          <td style="padding-left:15px; vertical-align:middle;">
+            <div style="font-size:20px; font-weight:bold;">Phillipp Ruckert</div>
+            <div style="font-size:14px; color:#cccccc;">Chairman of The Board</div>
+          </td>
+          <td style="text-align:right; vertical-align:middle;">
+            <img src="https://i.imgur.com/3WY94Zj.png" alt="Company Logo" style="width:100px; height:auto;">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  
+  <!-- Contact Information -->
+  <tr>
+    <td style="background-color:#1a1a1a; padding:20px;">
+      <!-- Contact Section -->
+      <table style="width:100%; color:#cccccc; font-size:12px;" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="padding-bottom:15px;">
+            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Contact</div>
+            <div>Phillipp Ruckert</div>
+            <div>+49 170 90 80 510</div>
+            <div><a href="mailto:hello@peak-atlas.io" style="color:#cccccc; text-decoration:none;">hello@peak-atlas.io</a></div>
+          </td>
+        </tr>
+        
+        <!-- Company Information -->
+        <tr>
+          <td style="padding-bottom:15px;">
+            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Company</div>
+            <div>Peak Atlas Group AG (Aktiengesellschaft)</div>
+            <div>Eichhornstraße 5, 97070 Würzburg, Germany</div>
+            <div><a href="https://peak-atlas.io" style="color:#cccccc; text-decoration:none;">peak-atlas.io</a> • <a href="mailto:hello@peak-atlas.io" style="color:#cccccc; text-decoration:none;">hello@peak-atlas.io</a> • District Court of Würzburg HRB 17861</div>
+          </td>
+        </tr>
+        
+        <!-- Governance Information -->
+        <tr>
+          <td style="padding-bottom:15px;">
+            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Governance</div>
+            <div>Supervisory Board: RA Berthold Yahya • Julian J. Schrader, M.Sc. • Tanja Scheuering, B.Sc.</div>
+            <div>Advisory Board: Axel Scheuering • Daniel Unger • Volker Walther • Axel Goldau • Kurt Groh • Luke Greenwood</div>
+            <div>Auditor: Harald Albert Belzer</div>
+          </td>
+        </tr>
+        
+        <!-- Corporate Group Information -->
+        <tr>
+          <td style="padding-bottom:15px;">
+            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Corporate Group</div>
+            <div>Peak Atlas Group AG is the parent of a corporate group ("Konzern") comprising:</div>
+            <div>Management Company – Peak Atlas HQ GmbH, District Court of Würzburg, HRB 17790 Intermediate</div>
+            <div>Holding Company – Peak Atlas UG, District Court of Würzburg, HRB 17694</div>
+            <div>Project Company – Peak Atlas Office UG, District Court of Würzburg, HRB 17806</div>
+          </td>
+        </tr>
+        
+        <!-- Disclaimer -->
+        <tr>
+          <td>
+            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Disclaimer</div>
+            <div>This email and any attachments are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you are not the intended recipient, please notify the sender immediately and delete this email from your system. Any unauthorized use, disclosure, or distribution is prohibited.</div>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
 </table>`;
@@ -30,6 +99,34 @@ export const DEFAULT_OPTIONS: CleanupOptions = {
   inlineCss: true,
   removeScripts: true,
   fixTables: true
+};
+
+// Signature data interface
+export interface SignatureData {
+  name: string;
+  title: string;
+  company: string;
+  profileImageUrl: string;
+  companyLogoUrl: string;
+  phone: string;
+  email: string;
+  website: string;
+  address: string;
+  companyRegistration: string;
+}
+
+// Default signature data
+export const DEFAULT_SIGNATURE_DATA: SignatureData = {
+  name: "Phillipp Ruckert",
+  title: "Chairman of The Board",
+  company: "Peak Atlas Group AG (Aktiengesellschaft)",
+  profileImageUrl: "https://i.imgur.com/JSKQCrM.png",
+  companyLogoUrl: "https://i.imgur.com/3WY94Zj.png",
+  phone: "+49 170 90 80 510",
+  email: "hello@peak-atlas.io",
+  website: "peak-atlas.io",
+  address: "Eichhornstraße 5, 97070 Würzburg, Germany",
+  companyRegistration: "District Court of Würzburg HRB 17861"
 };
 
 /**
@@ -71,10 +168,6 @@ export function transformHtml(
         (match) => match.replace(/<table/i, '<table border="0"')
       );
     }
-
-    // Inline CSS would need a more complex CSS parser library 
-    // in a real implementation. For this demo, we'll just preserve 
-    // the inline CSS that's already there.
 
     return transformedHtml;
   } catch (error) {
