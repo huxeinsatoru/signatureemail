@@ -138,10 +138,10 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
                     className="hidden"
                   />
                 </div>
-                <p className="text-xs text-gray-500">URL or upload your profile image (ideal: 400x400px square image)</p>
+                <p className="text-xs text-gray-500">URL or upload your profile image (displayed 40x40px in signature)</p>
                 <div className="mt-1 p-2 bg-blue-50 rounded-md text-xs text-blue-700 flex items-start">
                   <HelpCircle className="h-3 w-3 mr-1 mt-0.5 flex-shrink-0" />
-                  <span>For best quality, use a high-resolution square image saved as PNG or JPG format.</span>
+                  <span>For best quality, upload a high-resolution image (up to 1024px) in PNG or JPG format.</span>
                 </div>
               </div>
               
@@ -170,10 +170,10 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
                     className="hidden"
                   />
                 </div>
-                <p className="text-xs text-gray-500">URL or upload your company logo (ideal: transparent PNG, 200px width)</p>
+                <p className="text-xs text-gray-500">URL or upload your company logo (displayed 40px height in signature)</p>
                 <div className="mt-1 p-2 bg-blue-50 rounded-md text-xs text-blue-700 flex items-start">
                   <Info className="h-3 w-3 mr-1 mt-0.5 flex-shrink-0" />
-                  <span>For best results, use a PNG logo with transparent background and high resolution.</span>
+                  <span>For best results, upload a high-resolution image (up to 1024px) with transparent background.</span>
                 </div>
               </div>
             </div>

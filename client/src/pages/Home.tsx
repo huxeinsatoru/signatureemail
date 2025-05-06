@@ -58,8 +58,8 @@ export default function Home() {
           <td style="width:70%; vertical-align:middle;">
             <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
               <tr>
-                <td style="width:80px; vertical-align:middle;">
-                  <img src="${data.profileImageUrl}" alt="Profile Photo" style="display:block; width:80px; height:80px; border-radius:40px; border:1px solid #eeeeee; object-fit:cover; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
+                <td style="width:40px; vertical-align:middle;">
+                  <img src="${data.profileImageUrl}" alt="Profile Photo" style="display:block; width:40px; height:40px; border-radius:20px; border:1px solid #eeeeee; object-fit:cover; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
                 </td>
                 <td style="padding-left:15px; vertical-align:middle;">
                   <div style="font-size:20px; font-weight:bold; color:#333333;">${data.name}</div>
