@@ -6,22 +6,31 @@
 
 // Default example HTML for the signature editor
 export const DEFAULT_HTML = `<!-- Gmail Signature Template -->
-<table style="max-width:600px; width:100%; border-collapse:collapse; font-family:Arial, sans-serif; color:#ffffff;" cellpadding="0" cellspacing="0" border="0">
+<table style="max-width:600px; width:100%; border-collapse:collapse; font-family:Arial, sans-serif; color:#333333;" cellpadding="0" cellspacing="0" border="0">
   <!-- Header with Name, Title and Logo -->
   <tr>
-    <td style="background-color:#000000; padding:20px;">
-      <!-- Profile Photo and Name Section -->
+    <td style="background-color:#ffffff; padding:20px; border-bottom:1px solid #eeeeee;">
+      <!-- Profile Photo and Name Section with Logo -->
       <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td style="width:80px; vertical-align:middle;">
-            <img src="https://i.imgur.com/JSKQCrM.png" alt="Profile Photo" style="display:block; width:80px; height:80px; border-radius:40px; border:none; object-fit:cover; -ms-interpolation-mode:bicubic;">
+          <!-- Profile Group (Photo, Name, Title) -->
+          <td style="width:70%; vertical-align:middle;">
+            <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="width:80px; vertical-align:middle;">
+                  <img src="https://i.imgur.com/JSKQCrM.png" alt="Profile Photo" style="display:block; width:80px; height:80px; border-radius:40px; border:1px solid #eeeeee; object-fit:cover; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
+                </td>
+                <td style="padding-left:15px; vertical-align:middle;">
+                  <div style="font-size:20px; font-weight:bold; color:#333333;">Phillipp Ruckert</div>
+                  <div style="font-size:14px; color:#666666;">Chairman of The Board</div>
+                </td>
+              </tr>
+            </table>
           </td>
-          <td style="padding-left:15px; vertical-align:middle;">
-            <div style="font-size:20px; font-weight:bold;">Phillipp Ruckert</div>
-            <div style="font-size:14px; color:#cccccc;">Chairman of The Board</div>
-          </td>
-          <td style="text-align:right; vertical-align:middle;">
-            <img src="https://i.imgur.com/3WY94Zj.png" alt="Company Logo" style="display:block; max-width:100px; width:auto; height:auto; max-height:40px; border:none; -ms-interpolation-mode:bicubic;">
+          
+          <!-- Company Logo (with space-between) -->
+          <td style="width:30%; text-align:right; vertical-align:middle;">
+            <img src="https://i.imgur.com/3WY94Zj.png" alt="Company Logo" style="display:block; max-width:120px; width:auto; height:auto; max-height:50px; border:none; margin-left:auto; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
           </td>
         </tr>
       </table>
@@ -30,32 +39,32 @@ export const DEFAULT_HTML = `<!-- Gmail Signature Template -->
   
   <!-- Contact Information -->
   <tr>
-    <td style="background-color:#1a1a1a; padding:20px;">
+    <td style="background-color:#f9f9f9; padding:20px;">
       <!-- Contact Section -->
-      <table style="width:100%; color:#cccccc; font-size:12px;" cellpadding="0" cellspacing="0" border="0">
+      <table style="width:100%; color:#666666; font-size:12px;" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td style="padding-bottom:15px;">
-            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Contact</div>
+            <div style="font-weight:bold; color:#333333; margin-bottom:5px;">Contact</div>
             <div>Phillipp Ruckert</div>
             <div>+49 170 90 80 510</div>
-            <div><a href="mailto:hello@peak-atlas.io" style="color:#cccccc; text-decoration:none;">hello@peak-atlas.io</a></div>
+            <div><a href="mailto:hello@peak-atlas.io" style="color:#3366cc; text-decoration:none;">hello@peak-atlas.io</a></div>
           </td>
         </tr>
         
         <!-- Company Information -->
         <tr>
           <td style="padding-bottom:15px;">
-            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Company</div>
+            <div style="font-weight:bold; color:#333333; margin-bottom:5px;">Company</div>
             <div>Peak Atlas Group AG (Aktiengesellschaft)</div>
             <div>Eichhornstraße 5, 97070 Würzburg, Germany</div>
-            <div><a href="https://peak-atlas.io" style="color:#cccccc; text-decoration:none;">peak-atlas.io</a> • <a href="mailto:hello@peak-atlas.io" style="color:#cccccc; text-decoration:none;">hello@peak-atlas.io</a> • District Court of Würzburg HRB 17861</div>
+            <div><a href="https://peak-atlas.io" style="color:#3366cc; text-decoration:none;">peak-atlas.io</a> • <a href="mailto:hello@peak-atlas.io" style="color:#3366cc; text-decoration:none;">hello@peak-atlas.io</a> • District Court of Würzburg HRB 17861</div>
           </td>
         </tr>
         
         <!-- Governance Information -->
         <tr>
           <td style="padding-bottom:15px;">
-            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Governance</div>
+            <div style="font-weight:bold; color:#333333; margin-bottom:5px;">Governance</div>
             <div>Supervisory Board: RA Berthold Yahya • Julian J. Schrader, M.Sc. • Tanja Scheuering, B.Sc.</div>
             <div>Advisory Board: Axel Scheuering • Daniel Unger • Volker Walther • Axel Goldau • Kurt Groh • Luke Greenwood</div>
             <div>Auditor: Harald Albert Belzer</div>
@@ -65,7 +74,7 @@ export const DEFAULT_HTML = `<!-- Gmail Signature Template -->
         <!-- Corporate Group Information -->
         <tr>
           <td style="padding-bottom:15px;">
-            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Corporate Group</div>
+            <div style="font-weight:bold; color:#333333; margin-bottom:5px;">Corporate Group</div>
             <div>Peak Atlas Group AG is the parent of a corporate group ("Konzern") comprising:</div>
             <div>Management Company – Peak Atlas HQ GmbH, District Court of Würzburg, HRB 17790 Intermediate</div>
             <div>Holding Company – Peak Atlas UG, District Court of Würzburg, HRB 17694</div>
@@ -76,7 +85,7 @@ export const DEFAULT_HTML = `<!-- Gmail Signature Template -->
         <!-- Disclaimer -->
         <tr>
           <td>
-            <div style="font-weight:bold; color:#ffffff; margin-bottom:5px;">Disclaimer</div>
+            <div style="font-weight:bold; color:#333333; margin-bottom:5px;">Disclaimer</div>
             <div>This email and any attachments are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you are not the intended recipient, please notify the sender immediately and delete this email from your system. Any unauthorized use, disclosure, or distribution is prohibited.</div>
           </td>
         </tr>
