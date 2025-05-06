@@ -170,7 +170,7 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
                     className="hidden"
                   />
                 </div>
-                <p className="text-xs text-gray-500">URL or upload your company logo (displayed 40px height in signature)</p>
+                <p className="text-xs text-gray-500">URL or upload your company logo (displayed 30px height in signature)</p>
                 <div className="mt-1 p-2 bg-blue-50 rounded-md text-xs text-blue-700 flex items-start">
                   <Info className="h-3 w-3 mr-1 mt-0.5 flex-shrink-0" />
                   <span>For best results, upload a high-resolution image (up to 1024px) with transparent background.</span>

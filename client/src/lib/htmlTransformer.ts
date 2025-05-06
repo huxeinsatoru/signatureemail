@@ -30,7 +30,7 @@ export const DEFAULT_HTML = `<!-- Gmail Signature Template -->
           
           <!-- Company Logo (with space-between) -->
           <td style="width:40%; text-align:right; vertical-align:middle;">
-            <img src="https://i.imgur.com/3WY94Zj.png" alt="Company Logo" style="display:block; max-width:120px; width:auto; height:40px; border:none; margin-left:auto; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
+            <img src="https://i.imgur.com/3WY94Zj.png" alt="Company Logo" style="display:block; max-width:80px; width:auto; height:30px; border:none; margin-left:auto; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
           </td>
         </tr>
       </table>
