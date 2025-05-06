@@ -71,7 +71,7 @@ export default function Home() {
           
           <!-- Company Logo (with space-between) -->
           <td style="width:40%; text-align:right; vertical-align:middle;">
-            <img src="${data.companyLogoUrl}" alt="Company Logo" style="display:block; max-width:80px; width:auto; height:30px; border:none; margin-left:auto; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
+            <img src="${data.companyLogoUrl}" alt="Company Logo" style="display:block; max-width:70px; width:auto; height:20px; border:none; margin-left:auto; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
           </td>
         </tr>
       </table>
