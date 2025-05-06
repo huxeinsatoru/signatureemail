@@ -1,7 +1,9 @@
+import { useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SignatureData } from "@/lib/htmlTransformer";
 import { Upload } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 interface SignatureFormProps {
   data: SignatureData;
@@ -9,12 +11,57 @@ interface SignatureFormProps {
 }
 
 export default function SignatureForm({ data, onChange }: SignatureFormProps) {
+  const profileImageInputRef = useRef<HTMLInputElement>(null);
+  const companyLogoInputRef = useRef<HTMLInputElement>(null);
+
   // Handle input changes
   const handleChange = (field: keyof SignatureData, value: string) => {
     onChange({
       ...data,
       [field]: value
     });
+  };
+
+  // Handle file upload
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>, field: 'profileImageUrl' | 'companyLogoUrl') => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Check file size (max 1MB)
+    if (file.size > 1024 * 1024) {
+      toast({
+        title: "File too large",
+        description: "Image must be less than 1MB",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Check file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "Invalid file type",
+        description: "Please upload an image file",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Create a FileReader to read the file
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result;
+      if (typeof result === 'string') {
+        // Update the corresponding field with the data URL
+        handleChange(field, result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Trigger file input click
+  const triggerFileInput = (inputRef: React.RefObject<HTMLInputElement>) => {
+    inputRef.current?.click();
   };
 
   return (
@@ -53,7 +100,7 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="profileImageUrl">Profile Image URL</Label>
+                <Label htmlFor="profileImageUrl">Profile Image</Label>
                 <div className="flex">
                   <Input 
                     id="profileImageUrl" 
@@ -62,15 +109,26 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
                     placeholder="https://example.com/profile.jpg"
                     className="rounded-r-none"
                   />
-                  <div className="flex items-center justify-center bg-gray-100 border border-l-0 border-gray-300 rounded-r-md p-2">
+                  <button 
+                    type="button"
+                    onClick={() => triggerFileInput(profileImageInputRef)}
+                    className="flex items-center justify-center bg-gray-100 border border-l-0 border-gray-300 rounded-r-md p-2 hover:bg-gray-200 transition-colors"
+                  >
                     <Upload className="h-4 w-4 text-gray-500" />
-                  </div>
+                  </button>
+                  <input 
+                    type="file" 
+                    ref={profileImageInputRef}
+                    onChange={(e) => handleFileUpload(e, 'profileImageUrl')}
+                    accept="image/*"
+                    className="hidden"
+                  />
                 </div>
-                <p className="text-xs text-gray-500">URL to your profile image (80x80px recommended)</p>
+                <p className="text-xs text-gray-500">URL or upload your profile image (80x80px recommended)</p>
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="companyLogoUrl">Company Logo URL</Label>
+                <Label htmlFor="companyLogoUrl">Company Logo</Label>
                 <div className="flex">
                   <Input 
                     id="companyLogoUrl" 
@@ -79,11 +137,22 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
                     placeholder="https://example.com/logo.png"
                     className="rounded-r-none"
                   />
-                  <div className="flex items-center justify-center bg-gray-100 border border-l-0 border-gray-300 rounded-r-md p-2">
+                  <button 
+                    type="button"
+                    onClick={() => triggerFileInput(companyLogoInputRef)}
+                    className="flex items-center justify-center bg-gray-100 border border-l-0 border-gray-300 rounded-r-md p-2 hover:bg-gray-200 transition-colors"
+                  >
                     <Upload className="h-4 w-4 text-gray-500" />
-                  </div>
+                  </button>
+                  <input 
+                    type="file" 
+                    ref={companyLogoInputRef}
+                    onChange={(e) => handleFileUpload(e, 'companyLogoUrl')}
+                    accept="image/*"
+                    className="hidden"
+                  />
                 </div>
-                <p className="text-xs text-gray-500">URL to your company logo (recommended height: 40px)</p>
+                <p className="text-xs text-gray-500">URL or upload your company logo (recommended height: 40px)</p>
               </div>
             </div>
           </div>
