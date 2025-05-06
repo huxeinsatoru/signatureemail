@@ -55,14 +55,14 @@ export default function Home() {
       <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td style="width:80px; vertical-align:middle;">
-            <img src="${data.profileImageUrl}" alt="Profile Photo" style="display:block; width:80px; height:80px; border-radius:40px; border:none; object-fit:cover; -ms-interpolation-mode:bicubic;">
+            <img src="${data.profileImageUrl}" alt="Profile Photo" style="display:block; width:80px; height:80px; border-radius:40px; border:none; object-fit:cover; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
           </td>
-          <td style="padding-left:15px; vertical-align:middle;">
+          <td style="padding-left:20px; vertical-align:middle; width:60%;">
             <div style="font-size:20px; font-weight:bold;">${data.name}</div>
             <div style="font-size:14px; color:#cccccc;">${data.title}</div>
           </td>
-          <td style="text-align:right; vertical-align:middle;">
-            <img src="${data.companyLogoUrl}" alt="Company Logo" style="display:block; max-width:100px; width:auto; height:auto; max-height:40px; border:none; -ms-interpolation-mode:bicubic;">
+          <td style="text-align:right; vertical-align:middle; width:20%; padding-left:20px;">
+            <img src="${data.companyLogoUrl}" alt="Company Logo" style="display:block; max-width:100px; width:auto; height:auto; max-height:40px; border:none; margin-left:auto; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">
           </td>
         </tr>
       </table>

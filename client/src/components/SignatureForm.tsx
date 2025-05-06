@@ -2,8 +2,9 @@ import { useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SignatureData } from "@/lib/htmlTransformer";
-import { Upload } from "lucide-react";
+import { Upload, Info, HelpCircle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface SignatureFormProps {
   data: SignatureData;
@@ -27,11 +28,11 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    // Check file size (max 1MB)
-    if (file.size > 1024 * 1024) {
+    // Check file size (max 2MB)
+    if (file.size > 2 * 1024 * 1024) {
       toast({
         title: "File too large",
-        description: "Image must be less than 1MB",
+        description: "Image must be less than 2MB",
         variant: "destructive"
       });
       return;
@@ -54,6 +55,19 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
       if (typeof result === 'string') {
         // Update the corresponding field with the data URL
         handleChange(field, result);
+        
+        // Show success message with image quality tips
+        if (field === 'profileImageUrl') {
+          toast({
+            title: "Profile Image Uploaded",
+            description: "For best quality, use square images (1:1 ratio) with high resolution.",
+          });
+        } else {
+          toast({
+            title: "Logo Uploaded",
+            description: "For best quality, use a transparent PNG logo with high resolution.",
+          });
+        }
       }
     };
     reader.readAsDataURL(file);
@@ -124,7 +138,11 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
                     className="hidden"
                   />
                 </div>
-                <p className="text-xs text-gray-500">URL or upload your profile image (80x80px recommended)</p>
+                <p className="text-xs text-gray-500">URL or upload your profile image (ideal: 400x400px square image)</p>
+                <div className="mt-1 p-2 bg-blue-50 rounded-md text-xs text-blue-700 flex items-start">
+                  <HelpCircle className="h-3 w-3 mr-1 mt-0.5 flex-shrink-0" />
+                  <span>For best quality, use a high-resolution square image saved as PNG or JPG format.</span>
+                </div>
               </div>
               
               <div className="space-y-2">
@@ -152,7 +170,11 @@ export default function SignatureForm({ data, onChange }: SignatureFormProps) {
                     className="hidden"
                   />
                 </div>
-                <p className="text-xs text-gray-500">URL or upload your company logo (recommended height: 40px)</p>
+                <p className="text-xs text-gray-500">URL or upload your company logo (ideal: transparent PNG, 200px width)</p>
+                <div className="mt-1 p-2 bg-blue-50 rounded-md text-xs text-blue-700 flex items-start">
+                  <Info className="h-3 w-3 mr-1 mt-0.5 flex-shrink-0" />
+                  <span>For best results, use a PNG logo with transparent background and high resolution.</span>
+                </div>
               </div>
             </div>
           </div>

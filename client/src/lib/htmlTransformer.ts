@@ -184,14 +184,44 @@ export function transformHtml(
         }
       );
 
-      // Improve image rendering
+      // Improve image rendering for high quality
       transformedHtml = transformedHtml.replace(
         /<img([^>]*)>/gi,
         (match, attributes) => {
+          // Check if the img tag has style attribute
           if (!match.includes('style=')) {
-            return `<img${attributes} style="display:block; max-width:100%; border:none; -ms-interpolation-mode:bicubic;">`;
-          } else if (!match.includes('-ms-interpolation-mode')) {
-            return match.replace(/style="([^"]*)"/i, 'style="$1; -ms-interpolation-mode:bicubic;"');
+            return `<img${attributes} style="display:block; max-width:100%; border:none; image-rendering:high-quality; -ms-interpolation-mode:bicubic;">`;
+          } else {
+            // Add image quality attributes if they don't exist
+            let newMatch = match;
+            if (!match.includes('image-rendering')) {
+              newMatch = newMatch.replace(/style="([^"]*)"/i, 'style="$1; image-rendering:high-quality;"');
+            }
+            if (!match.includes('-ms-interpolation-mode')) {
+              newMatch = newMatch.replace(/style="([^"]*)"/i, 'style="$1; -ms-interpolation-mode:bicubic;"');
+            }
+            return newMatch;
+          }
+        }
+      );
+
+      // Ensure profile image maintains proper aspect ratio and quality
+      transformedHtml = transformedHtml.replace(
+        /<img([^>]*alt="Profile Photo"[^>]*)>/gi, 
+        (match, attributes) => {
+          if (!match.includes('object-fit')) {
+            return match.replace(/style="([^"]*)"/i, 'style="$1; object-fit:cover;"');
+          }
+          return match;
+        }
+      );
+
+      // Ensure company logo maintains proper size and spacing
+      transformedHtml = transformedHtml.replace(
+        /<img([^>]*alt="Company Logo"[^>]*)>/gi, 
+        (match, attributes) => {
+          if (!match.includes('margin-left')) {
+            return match.replace(/style="([^"]*)"/i, 'style="$1; margin-left:auto;"');
           }
           return match;
         }
