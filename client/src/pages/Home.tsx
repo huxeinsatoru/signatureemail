@@ -47,7 +47,7 @@ export default function Home() {
   const generateSignatureHtml = (data: SignatureData) => {
     // Using template literals to generate the HTML with the updated data
     const generatedHtml = `<!-- Gmail Signature Template -->
-<table style="width:600px; border-collapse:collapse; font-family:Arial, sans-serif; color:#ffffff;" cellpadding="0" cellspacing="0" border="0">
+<table style="max-width:600px; width:100%; border-collapse:collapse; font-family:Arial, sans-serif; color:#ffffff;" cellpadding="0" cellspacing="0" border="0">
   <!-- Header with Name, Title and Logo -->
   <tr>
     <td style="background-color:#000000; padding:20px;">
@@ -55,14 +55,14 @@ export default function Home() {
       <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td style="width:80px; vertical-align:middle;">
-            <img src="${data.profileImageUrl}" alt="Profile Photo" style="width:80px; height:80px; border-radius:40px; border:none;">
+            <img src="${data.profileImageUrl}" alt="Profile Photo" style="display:block; width:80px; height:80px; border-radius:40px; border:none; object-fit:cover; -ms-interpolation-mode:bicubic;">
           </td>
           <td style="padding-left:15px; vertical-align:middle;">
             <div style="font-size:20px; font-weight:bold;">${data.name}</div>
             <div style="font-size:14px; color:#cccccc;">${data.title}</div>
           </td>
           <td style="text-align:right; vertical-align:middle;">
-            <img src="${data.companyLogoUrl}" alt="Company Logo" style="width:100px; height:auto;">
+            <img src="${data.companyLogoUrl}" alt="Company Logo" style="display:block; max-width:100px; width:auto; height:auto; max-height:40px; border:none; -ms-interpolation-mode:bicubic;">
           </td>
         </tr>
       </table>

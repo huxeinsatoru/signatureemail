@@ -24,11 +24,27 @@ export default function PreviewPane({ html, transformedHtml, onCopy }: PreviewPa
           </button>
         </div>
         <div className="editor-container preview-pane">
-          <div 
-            ref={previewRef}
-            className="w-full h-full p-4 overflow-auto bg-white"
-            dangerouslySetInnerHTML={{ __html: html ? transformedHtml : '' }}
-          />
+          <div className="flex flex-col">
+            <div className="px-4 py-2 bg-gray-100 border-b text-xs text-gray-500">
+              Mobile View
+            </div>
+            <div
+              style={{maxWidth: "375px", margin: "0 auto", border: "1px solid #e5e7eb"}}
+              className="w-full mt-4 mb-8 overflow-auto bg-white py-4"
+            >
+              <div 
+                dangerouslySetInnerHTML={{ __html: html ? transformedHtml : '' }}
+              />
+            </div>
+            <div className="px-4 py-2 bg-gray-100 border-b text-xs text-gray-500">
+              Desktop View
+            </div>
+            <div 
+              ref={previewRef}
+              className="w-full p-4 overflow-auto bg-white"
+              dangerouslySetInnerHTML={{ __html: html ? transformedHtml : '' }}
+            />
+          </div>
         </div>
       </div>
     </div>

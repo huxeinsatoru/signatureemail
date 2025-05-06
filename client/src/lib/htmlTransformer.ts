@@ -6,7 +6,7 @@
 
 // Default example HTML for the signature editor
 export const DEFAULT_HTML = `<!-- Gmail Signature Template -->
-<table style="width:600px; border-collapse:collapse; font-family:Arial, sans-serif; color:#ffffff;" cellpadding="0" cellspacing="0" border="0">
+<table style="max-width:600px; width:100%; border-collapse:collapse; font-family:Arial, sans-serif; color:#ffffff;" cellpadding="0" cellspacing="0" border="0">
   <!-- Header with Name, Title and Logo -->
   <tr>
     <td style="background-color:#000000; padding:20px;">
@@ -14,14 +14,14 @@ export const DEFAULT_HTML = `<!-- Gmail Signature Template -->
       <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td style="width:80px; vertical-align:middle;">
-            <img src="https://i.imgur.com/JSKQCrM.png" alt="Profile Photo" style="width:80px; height:80px; border-radius:40px; border:none;">
+            <img src="https://i.imgur.com/JSKQCrM.png" alt="Profile Photo" style="display:block; width:80px; height:80px; border-radius:40px; border:none; object-fit:cover; -ms-interpolation-mode:bicubic;">
           </td>
           <td style="padding-left:15px; vertical-align:middle;">
             <div style="font-size:20px; font-weight:bold;">Phillipp Ruckert</div>
             <div style="font-size:14px; color:#cccccc;">Chairman of The Board</div>
           </td>
           <td style="text-align:right; vertical-align:middle;">
-            <img src="https://i.imgur.com/3WY94Zj.png" alt="Company Logo" style="width:100px; height:auto;">
+            <img src="https://i.imgur.com/3WY94Zj.png" alt="Company Logo" style="display:block; max-width:100px; width:auto; height:auto; max-height:40px; border:none; -ms-interpolation-mode:bicubic;">
           </td>
         </tr>
       </table>
@@ -166,6 +166,35 @@ export function transformHtml(
       transformedHtml = transformedHtml.replace(
         /<table(?![^>]*border)[^>]*>/gi,
         (match) => match.replace(/<table/i, '<table border="0"')
+      );
+
+      // Add responsive attributes to tables
+      transformedHtml = transformedHtml.replace(
+        /<table[^>]*>/gi,
+        (match) => {
+          // If the table already has a width, make it max-width
+          if (match.includes('width:')) {
+            match = match.replace(/width:([^;]*);/gi, 'max-width:$1; width:100%;');
+          }
+          // Make sure images are displayed correctly
+          if (!match.includes('style=')) {
+            return match.replace(/<table/i, '<table style="width:100%; max-width:600px;"');
+          }
+          return match;
+        }
+      );
+
+      // Improve image rendering
+      transformedHtml = transformedHtml.replace(
+        /<img([^>]*)>/gi,
+        (match, attributes) => {
+          if (!match.includes('style=')) {
+            return `<img${attributes} style="display:block; max-width:100%; border:none; -ms-interpolation-mode:bicubic;">`;
+          } else if (!match.includes('-ms-interpolation-mode')) {
+            return match.replace(/style="([^"]*)"/i, 'style="$1; -ms-interpolation-mode:bicubic;"');
+          }
+          return match;
+        }
       );
     }
 
